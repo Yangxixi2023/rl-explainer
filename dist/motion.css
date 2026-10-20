@@ -1,0 +1,46 @@
+.computation-graph{position:relative;overflow:clip;isolation:isolate}
+.motion-exit-layer{position:absolute;inset:0 auto auto 0;width:100%;pointer-events:none;z-index:2;overflow:visible}
+.flow-particles,.flow-particles *{pointer-events:none}
+.flow-ink{stroke-linecap:round;filter:drop-shadow(0 0 2px #ffffff)}
+.computation-svg[data-playing-stage="0"] .g-interactive[data-stage="0"]>rect,
+.computation-svg[data-playing-stage="1"] .g-interactive[data-stage="1"]>rect,
+.computation-svg[data-playing-stage="2"] .g-interactive[data-stage="2"]>rect,
+.computation-svg[data-playing-stage="3"] .g-interactive[data-stage="3"]>rect,
+.computation-svg[data-playing-stage="4"] .g-interactive[data-stage="4"]>rect{stroke-width:1.8;filter:drop-shadow(0 0 3px #c7d9d340)}
+.computation-svg .g-heading-hit{transition:fill .3s ease}
+.computation-svg[data-playing-stage="0"] [data-motion-key="heading:01"] .g-heading-hit,
+.computation-svg[data-playing-stage="1"] [data-motion-key="heading:02"] .g-heading-hit,
+.computation-svg[data-playing-stage="2"] [data-motion-key="heading:03"] .g-heading-hit,
+.computation-svg[data-playing-stage="3"] [data-motion-key="heading:04"] .g-heading-hit,
+.computation-svg[data-playing-stage="4"] [data-motion-key="heading:05"] .g-heading-hit{fill:#f8f1ec}
+.workspace-nav{position:relative}
+.workspace-nav:after{content:"";position:absolute;bottom:-1px;left:var(--tab-left,16px);width:var(--tab-width,120px);height:2px;background:var(--orange);transition:left .48s cubic-bezier(.22,1,.36,1),width .48s cubic-bezier(.22,1,.36,1);pointer-events:none}
+.workspace-tab.active{border-bottom-color:transparent}
+.method-picker{position:relative;isolation:isolate}
+.method-picker:before{content:"";position:absolute;top:0;bottom:0;left:var(--method-left,0px);width:var(--method-width,52px);background:#ededed;z-index:-1;transition:left .48s cubic-bezier(.22,1,.36,1),width .48s cubic-bezier(.22,1,.36,1)}
+.method-picker>button,.method-picker>button.selected{background:transparent;transition:color .25s ease}
+.method-picker>button:hover:not(:disabled){background:#77777708}
+.stage{transition:background .3s ease,color .3s ease}
+.stage-index,.stage-label,.stage-label small{transition:color .3s ease}
+.stage.running{background:#faf2ec}
+.stage.running .stage-index{color:var(--orange)}
+.model-badge.is-playing{color:var(--orange)}
+.model-badge{transition:color .3s ease}
+#llm-auto.running{color:var(--orange);border-color:#d6aa96;background:#fff9f5}
+#detail-dialog{overflow-x:hidden;will-change:transform,opacity}
+#detail-dialog[open]::backdrop{animation:detail-backdrop-in .26s ease both}
+#dialog-body{position:relative}
+.detail-exit{position:absolute;left:32px;right:32px;pointer-events:none}
+@keyframes detail-backdrop-in{from{background:#3330;backdrop-filter:blur(0)}to{background:#3335;backdrop-filter:blur(2px)}}
+:root{view-transition-name:none}
+::view-transition,::view-transition-group(*),::view-transition-image-pair(*),::view-transition-old(*),::view-transition-new(*){pointer-events:none}
+#language-lab:not([hidden]),#grid-lab:not([hidden]){view-transition-name:experiment}
+#training-chart{view-transition-name:training-trace}
+::view-transition-group(experiment),::view-transition-group(training-trace){animation-duration:.48s;animation-timing-function:cubic-bezier(.22,1,.36,1)}
+::view-transition-old(experiment){animation:surface-out .22s ease both}
+::view-transition-new(experiment){animation:surface-in .45s cubic-bezier(.22,1,.36,1) both;mix-blend-mode:normal}
+::view-transition-old(training-trace){animation:surface-out .18s ease both}
+::view-transition-new(training-trace){animation:surface-in .4s cubic-bezier(.22,1,.36,1) both}
+@keyframes surface-out{to{opacity:0;transform:translateX(-16px)}}
+@keyframes surface-in{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}#detail-dialog[open]::backdrop{animation:none!important}}
